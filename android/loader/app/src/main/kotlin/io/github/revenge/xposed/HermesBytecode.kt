@@ -9,7 +9,7 @@ import java.nio.ByteOrder
 /**
  * The Hermes bytecode version of the Discord on this phone, read from the header of its own bundle.
  *
- * Endcord is published as plain JS and, for the bytecode versions Discord ships, precompiled: bytecode starts faster
+ * Medslol is published as plain JS and, for the bytecode versions Discord ships, precompiled: bytecode starts faster
  * and takes less memory, since Hermes needn't parse and compile a megabyte of source on every start. Bytecode only
  * loads on the exact version it was compiled for, so the version is read rather than assumed.
  */

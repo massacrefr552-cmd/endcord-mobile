@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="docs/images/banner.png" alt="Endcord" width="420">
+<img src="docs/images/banner.png" alt="Medslol" width="420">
 
-# Endcord Mobile
+# Medslol Mobile
 
-**Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad**
+**Modern plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad**
 
 [![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)
 [![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.7/Endcord.ipa)
@@ -17,27 +17,27 @@
 ![Languages](https://img.shields.io/badge/languages-5-F59E0B)
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue)
 
-[Website](https://endcord.com) · [Endcord PC](https://github.com/Endcord/Endcord) · [Endcord Classic](https://github.com/Endcord/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
+[Website](https://endcord.com) · [Medslol PC](https://github.com/Endcord/Endcord) · [Medslol Classic](https://github.com/Endcord/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
 
 </div>
 
-Endcord is on every platform: this repository is the mobile app for **Android** and **iOS / iPadOS**, and
-[Endcord PC](https://github.com/Endcord/Endcord) covers **Windows, macOS, Linux and the web**.
+Medslol is on every platform: this repository is the mobile app for **Android** and **iOS / iPadOS**, and
+[Medslol PC](https://github.com/Endcord/Endcord) covers **Windows, macOS, Linux and the web**.
 
 | | Android | iOS and iPadOS |
 | --- | --- | --- |
 | **Version** | Android 9 or newer | iOS 16 or newer, Discord 332 or newer |
-| **Install with** | Endcord Installer | An IPA, with Sideloadly, AltStore, SideStore, Feather, KSign or ESign |
+| **Install with** | Medslol Installer | An IPA, with Sideloadly, AltStore, SideStore, Feather, KSign or ESign |
 | **Root or jailbreak** | Not needed | Not needed |
 | **Plugins, themes, fonts** | Yes | Yes |
 | **Signed updates** | Yes | Yes |
 | **Code** | [`android/`](android) | [`ios/`](ios) |
 
-Both run the same Endcord, from [`bundle/`](bundle), so plugins and themes work the same on each.
+Both run the same Medslol bundle, from [`bundle/`](bundle), so plugins and themes work the same on each.
 
 ## Features
 
-- **303 plugins built in.** 261 of them come from Endcord PC and 42 are made for phones. They are all off until you
+- **303 plugins built in.** 261 of them come from Medslol PC and 42 are made for phones. They are all off until you
   turn them on, each with its own settings, and you can search and filter them by tag like on desktop. See the
   [full list](docs/PLUGINS.md).
 - **Themes and fonts.** Browse community themes and Catppuccin without leaving the app, or add your own. The status
@@ -47,7 +47,7 @@ Both run the same Endcord, from [`bundle/`](bundle), so plugins and themes work 
 - **Your language.** English, Türkçe, Русский, Español and Français, following Discord's language or the one you pick.
 - **Light on older phones.** Only a list of plugins loads when Discord starts. A plugin's code loads the first time you
   turn it on.
-- **Always up to date.** Endcord updates itself every time the app starts. On Android, the installer rebuilds it when
+- **Always up to date.** Medslol updates itself every time the app starts. On Android, the installer rebuilds it when
   Discord updates.
 - **Signed updates.** Every update is signed, and the app checks that signature and refuses older versions, so changing
   the files on the server isn't enough to run code on your phone.
@@ -57,27 +57,27 @@ Both run the same Endcord, from [`bundle/`](bundle), so plugins and themes work 
 
 ## Install on Android
 
-No root needed. Endcord installs next to Discord as a separate app, and your Discord stays exactly as it is.
+No root needed. Medslol installs next to Discord as a separate app, and your Discord stays exactly as it is.
 
-1. Download **[Endcord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)**
+1. Download **[Medslol Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)**
    and open it. If Android asks, allow your browser to install apps.
-2. In **Endcord Installer**, tap **Install**. It uses the Discord on your phone, or downloads the latest one.
-3. Open **Endcord** and sign in. Endcord's settings are in Discord's settings, under **Endcord**.
+2. In **Medslol Installer**, tap **Install**. It uses the Discord on your phone, or downloads the latest one.
+3. Open **Medslol** and sign in. Medslol's settings are in Discord's settings, under **Medslol**.
 
 Requires Android 9 or newer. If Google Play Protect warns about the installer, tap **More details → Install anyway**:
 it warns about every app that doesn't come from the Play Store.
 
 <details>
-<summary><b>Rooted? Run Endcord inside the real Discord with LSPosed</b></summary>
+<summary><b>Rooted? Run Medslol inside the real Discord with LSPosed</b></summary>
 
 <br>
 
-Nothing is reinstalled: the Play Store Discord runs Endcord.
+Nothing is reinstalled: the Play Store Discord runs Medslol.
 
 1. Install [LSPosed](https://github.com/JingMatrix/LSPosed) or another Xposed framework.
 2. Download `endcord-xposed.apk` from the [`builds-next` branch](https://github.com/Endcord/endcord-mobile/tree/builds-next)
    and install it.
-3. In LSPosed, enable the **Endcord Xposed** module for **Discord** (`com.discord`).
+3. In LSPosed, enable the **Medslol Xposed** module for **Discord** (`com.discord`).
 4. Force-stop Discord and open it again.
 
 </details>
@@ -93,7 +93,7 @@ No jailbreak needed. iOS 16 or newer.
    - **AltStore or SideStore**, adding this source:
      `https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-ios/apps.json`
    - **Feather, KSign or ESign**, with a certificate of your own.
-3. Open **Endcord** and sign in. Endcord's settings are in Discord's settings, under **Endcord**.
+3. Open **Medslol** and sign in. Medslol's settings are in Discord's settings, under **Medslol**.
 
 With a free Apple ID the app has to be signed again every 7 days. Shared free certificates can be revoked by Apple at
 any time, and everything signed with one then stops opening until it's signed with another.
@@ -126,8 +126,8 @@ background, and passkeys and sharing to Discord from other apps don't work. Smoo
 <br>
 
 Not in this app. Aliucord plugins are written for the older Discord that Aliucord is built on and can't run on the
-current one. [Endcord Classic](https://github.com/Endcord/endcord-mobile/tree/main) runs both Endcord's and
-Aliucord's plugins, and Endcord Installer can set it up for you.
+current one. [Medslol Classic](https://github.com/Endcord/endcord-mobile/tree/main) runs both Medslol's and
+Aliucord's plugins, and Medslol Installer can set it up for you.
 
 </details>
 
@@ -136,21 +136,21 @@ Aliucord's plugins, and Endcord Installer can set it up for you.
 
 <br>
 
-You don't need to do anything for Endcord itself: it downloads its newest version every time the app starts. On
-Android, when Discord updates, Endcord Installer sends a notification: tap it to rebuild Endcord. The installer also
+You don't need to do anything for Medslol itself: it downloads its newest version every time the app starts. On
+Android, when Discord updates, Medslol Installer sends a notification: tap it to rebuild Medslol. The installer also
 tells you when a new version of itself is out. On iOS, a new Discord comes as a new IPA, which AltStore and SideStore
 update for you.
 
 </details>
 
 <details>
-<summary><b>Endcord won't start, or a plugin broke something</b></summary>
+<summary><b>Medslol won't start, or a plugin broke something</b></summary>
 
 <br>
 
-- Shake the phone for the recovery menu, or on Android hold two fingers on the screen for 3 seconds right after Endcord
-  opens: reload, recovery mode (plugins and themes off), delete the downloaded Endcord, or reset the loader settings.
-- Endcord → General → **Safe Mode** reloads without plugins and themes.
+- Shake the phone for the recovery menu, or on Android hold two fingers on the screen for 3 seconds right after Medslol
+  opens: reload, recovery mode (plugins and themes off), delete the downloaded Medslol, or reset the loader settings.
+- Medslol → General → **Safe Mode** reloads without plugins and themes.
 - A plugin that fails to start turns itself off and says so. Turn it back on after the next update.
 
 </details>
@@ -160,7 +160,7 @@ update for you.
 
 <br>
 
-Client mods are against Discord's Terms of Service. Bans for using one are rare, but they can happen, so use Endcord
+Client mods are against Discord's Terms of Service. Bans for using one are rare, but they can happen, so use Medslol
 at your own risk. Plugins that act for you, like scheduled messages, stay off until you turn them on.
 
 </details>
@@ -169,8 +169,8 @@ at your own risk. Plugins that act for you, like scheduled messages, stay off un
 
 | Directory | What it is |
 | --- | --- |
-| [`bundle/`](bundle) | The Endcord that runs inside Discord on both platforms: plugins, themes and settings |
-| [`android/`](android) | The Android loader and Endcord Installer |
+| [`bundle/`](bundle) | The Medslol bundle that runs inside Discord on both platforms: plugins, themes and settings |
+| [`android/`](android) | The Android loader and Medslol Installer |
 | [`ios/`](ios) | The iOS tweak, and its tests |
 | [`docs/`](docs) | Development, the plugin list and how to write a plugin |
 
@@ -178,12 +178,12 @@ at your own risk. Plugins that act for you, like scheduled messages, stay off un
 
 Bug reports, translations and plugins are welcome: open an issue or come to our
 [Discord](https://discord.gg/endcord). [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) explains how the repository is laid
-out, how to build and test Endcord, and how releases work; [docs/PLUGINS.md](docs/PLUGINS.md) shows how to write a
+out, how to build and test Medslol, and how releases work; [docs/PLUGINS.md](docs/PLUGINS.md) shows how to write a
 plugin.
 
 ## Credits and license
 
-Endcord Mobile is a fork of [Revenge](https://github.com/revenge-mod), which continues Bunny and Vendetta, and its iOS
+Medslol Mobile is a fork of [Revenge](https://github.com/revenge-mod), which continues Bunny and Vendetta, and its iOS
 tweak of [RainTweak](https://codeberg.org/raincord/RainTweak); see [UPSTREAM.md](UPSTREAM.md) for the exact upstream
 commits. It would not exist without them,
 [LSPatch](https://github.com/LSPosed/LSPatch) and the Vendetta tracker mirrors that serve the Discord APKs.
@@ -193,9 +193,9 @@ MessageLogger and FakeNitro follow the approaches of the
 and the community [theme marketplace](https://github.com/kmmiio99o/theme-marketplace).
 
 © 2026 rootpoi and contributors. Each directory keeps the license of the project it was forked from: `bundle/`
-BSD-3-Clause, `android/loader/` GPL-3.0, `android/installer/` and `ios/` OSL-3.0. Endcord's plugins (`bundle/src/plugins`) and the other files
-marked `SPDX-License-Identifier: GPL-3.0-or-later` are GPL-3.0-or-later, like Endcord PC, so the built bundle as a
+BSD-3-Clause, `android/loader/` GPL-3.0, `android/installer/` and `ios/` OSL-3.0. Medslol's plugins (`bundle/src/plugins`) and the other files
+marked `SPDX-License-Identifier: GPL-3.0-or-later` are GPL-3.0-or-later, like Medslol PC, so the built bundle as a
 whole is distributed under the GPL-3.0. The original copyright notices of Team Vendetta, pylixonly and Team Revenge
 are kept in the source files and shown in the installer's About screen.
 
-<sub>Endcord is not affiliated with or endorsed by Discord Inc., Apple or the Revenge and Rain teams.</sub>
+<sub>Medslol is not affiliated with or endorsed by Discord Inc., Apple or the Revenge and Rain teams.</sub>

@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name" translatable="false">Endcord Installer</string>
+    <string name="app_name" translatable="false">Medslol Installer</string>
 
     <string name="cd_library_author">Author: %1$s</string>
     <string name="cd_library_license">License: %1$s</string>
@@ -21,7 +21,7 @@
     <string name="msg_invalid_apk">APK was corrupted, try clearing cache then reinstalling</string>
     <string name="msg_download_cancelled">Download was aborted</string>
     <string name="msg_download_failed">Download failed</string>
-    <string name="msg_unsigned_module">Using your own module file: it isn\'t checked against Endcord\'s signed release</string>
+    <string name="msg_unsigned_module">Using your own module file: it isn\'t checked against Medslol\'s signed release</string>
     <string name="msg_download_verify_failed">Could not verify downloaded file, check logs for more details</string>
     <string name="msg_copied">Copied to clipboard</string>
 
@@ -33,11 +33,11 @@
     <string name="step_dl_lib">Downloading libraries apk</string>
     <string name="step_dl_lang">Downloading language apk</string>
     <string name="step_dl_res">Downloading resources apk</string>
-    <string name="step_dl_mod">Downloading Endcord</string>
+    <string name="step_dl_mod">Downloading Medslol</string>
 
     <string name="step_change_icon">Changing app icon</string>
     <string name="step_patch_manifests">Patching app manifests</string>
-    <string name="step_add_mod">Injecting Endcord</string>
+    <string name="step_add_mod">Injecting Medslol</string>
 
     <string name="step_signing">Signing APKs</string>
     <string name="step_installing">Installing APKs</string>
@@ -75,7 +75,7 @@
     <string name="action_reload">Reload</string>
     <string name="action_open_about">Open about</string>
     <string name="action_open_settings">Open settings</string>
-    <string name="action_tap_to_install">Tap to install Endcord for Discord %1$s</string>
+    <string name="action_tap_to_install">Tap to install Medslol for Discord %1$s</string>
     <string name="action_confirm_exit">Exit anyway</string>
     <string name="action_dismiss_nevermind">Never mind</string>
     <string name="action_dismiss_no_thanks">No thanks</string>
@@ -127,10 +127,10 @@
     <string name="settings_check_updates">Check for Discord updates</string>
 
     <string name="settings_customization">Customization</string>
-    <string name="settings_customization_description">Customize your Endcord installation</string>
+    <string name="settings_customization_description">Customize your Medslol installation</string>
     <string name="settings_app_name">App name</string>
     <string name="settings_app_icon">Replace app icon</string>
-    <string name="settings_app_icon_description">Uses the Endcord icon instead of Discord\'s</string>
+    <string name="settings_app_icon_description">Uses the Medslol icon instead of Discord\'s</string>
 
     <string name="settings_advanced">Advanced</string>
     <string name="settings_advanced_description">Modify downloading and installation</string>
@@ -154,7 +154,7 @@
     <string name="settings_logs_alternate_lines">Alternate lines</string>
     <string name="settings_logs_line_wrap">Wrap lines</string>
 
-    <string name="update_description">Endcord Installer %1$s is available.</string>
+    <string name="update_description">Medslol Installer %1$s is available.</string>
 
     <string name="channel_stable">Stable</string>
     <string name="channel_beta">Beta</string>
@@ -185,13 +185,13 @@
     <string name="source_download">Download Discord</string>
     <string name="source_download_desc">Discord %1$s, the latest version</string>
 
-    <string name="edition_title">Which Endcord?</string>
-    <string name="edition_endcord">Endcord</string>
-    <string name="edition_endcord_desc">On the current Discord app, with 300+ Endcord plugins</string>
-    <string name="edition_classic">Endcord Classic</string>
-    <string name="edition_classic_desc">On Aliucord\'s older Discord app, with 230+ Endcord plugins and Aliucord\'s plugins</string>
-    <string name="classic_body">Endcord Classic is built on Aliucord. It runs the older Discord app that Aliucord supports, so besides Endcord\'s own plugins it can use Aliucord\'s plugins too.</string>
-    <string name="classic_note">It is installed and updated by its own app, Endcord Classic Installer. Keep it on your phone for updates.</string>
-    <string name="action_get_classic_installer">Get Endcord Classic Installer</string>
-    <string name="action_open_classic_installer">Open Endcord Classic Installer</string>
+    <string name="edition_title">Which Medslol?</string>
+    <string name="edition_endcord">Medslol</string>
+    <string name="edition_endcord_desc">On the current Discord app, with 300+ Medslol plugins</string>
+    <string name="edition_classic">Medslol Classic</string>
+    <string name="edition_classic_desc">On Aliucord\'s older Discord app, with 230+ Medslol plugins and Aliucord\'s plugins</string>
+    <string name="classic_body">Medslol Classic is built on Aliucord. It runs the older Discord app that Aliucord supports, so besides Medslol\'s own plugins it can use Aliucord\'s plugins too.</string>
+    <string name="classic_note">It is installed and updated by its own app, Medslol Classic Installer. Keep it on your phone for updates.</string>
+    <string name="action_get_classic_installer">Get Medslol Classic Installer</string>
+    <string name="action_open_classic_installer">Open Medslol Classic Installer</string>
 </resources>

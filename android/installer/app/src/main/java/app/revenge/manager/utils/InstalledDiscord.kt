@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 
 /**
- * The official Discord app, if it is installed. Android only lets the app that signed Discord update it, so Endcord
+ * The official Discord app, if it is installed. Android only lets the app that signed Discord update it, so Medslol
  * can't change it in place; it is copied, patched and installed next to it as a separate app instead.
  */
 object InstalledDiscord {

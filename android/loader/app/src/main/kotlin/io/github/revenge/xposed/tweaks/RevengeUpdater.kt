@@ -45,7 +45,7 @@ object RevengeUpdater {
     private const val RELEASE_MANIFEST = "endcord-release.json"
     private const val RELEASE_SIGNATURE = "endcord-release.sig"
     private const val RELEASE_SEQUENCE = "release-sequence"
-    /** Where the Endcord bundle is published; overridable at build time with `-Pendcord.bundleUrl=...` for testing. */
+    /** Where the Medslol bundle is published; overridable at build time with `-Pendcord.bundleUrl=...` for testing. */
     private const val DEFAULT_BUNDLE_URL = BuildConfig.BUNDLE_URL
 
     private val log = logger("revengeUpdater")
@@ -240,7 +240,7 @@ object RevengeUpdater {
                         downloadManifest()
 
                         if (userInitiated) showSuccessDialog()
-                        // Endcord already started from the copy it had: the update applies on a reload
+                        // Medslol already started from the copy it had: the update applies on a reload
                         else if (showDialog || bundleLoaded) showUpdateDialog()
                     }
 
@@ -250,7 +250,7 @@ object RevengeUpdater {
             }
         } catch (e: Throwable) {
             log.e("Failed to download script", e)
-            // With a downloaded copy Endcord still starts, so a failed update check (offline, say) stays quiet
+            // With a downloaded copy Medslol still starts, so a failed update check (offline, say) stays quiet
             if (userInitiated || !hasUsableBundle()) showErrorDialog(e)
         } finally {
             _downloadReady.complete(Unit)

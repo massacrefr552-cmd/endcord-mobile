@@ -1,8 +1,8 @@
 Package: com.endcord.tweak
-Name: Endcord
+Name: Medslol
 Version: 1.0.7
 Architecture: iphoneos-arm
-Description: Endcord for Discord on iOS: plugins, themes and privacy
+Description: Medslol for Discord on iOS: plugins, themes and privacy
 Maintainer: rootpoi
 Author: rootpoi and contributors, based on RainTweak by cocobo1 and Bwlok
 Icon: <https://raw.githubusercontent.com/Endcord/endcord-mobile/next/bundle/src/assets/icons/endcord.png>

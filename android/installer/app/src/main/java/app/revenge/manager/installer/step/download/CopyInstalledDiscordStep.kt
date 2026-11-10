@@ -16,7 +16,7 @@ import org.koin.core.component.inject
 import java.io.File
 
 /**
- * Copies the APKs of the Discord already installed on the phone (usually from the Play Store), so Endcord is built
+ * Copies the APKs of the Discord already installed on the phone (usually from the Play Store), so Medslol is built
  * from exactly the version the user has instead of a download.
  *
  * @param workingDir Where the copies are patched

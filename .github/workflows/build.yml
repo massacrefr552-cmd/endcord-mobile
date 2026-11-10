@@ -35,7 +35,7 @@ jobs:
         run: bun run lint
       - name: Check the translations
         working-directory: bundle
-        # Without Endcord PC checked out, the shipped translations are checked: every string in all five languages
+        # Without Medslol PC checked out, the shipped translations are checked: every string in all five languages
         run: node scripts/i18n-sync.mjs --strict
       - name: Build
         working-directory: bundle
@@ -132,11 +132,11 @@ jobs:
           path: android/installer/app/build/outputs/apk/release/*.apk
 
   classic-installer:
-    # The installer offers Endcord Classic, on Aliucord's older Discord, through its own installer, which lives on the
+    # The installer offers Medslol Classic, on Aliucord's older Discord, through its own installer, which lives on the
     # main branch and is published next to this one
-    name: Endcord Classic Installer
+    name: Medslol Classic Installer
     runs-on: ubuntu-latest
-    # Signed with the installer key, like main's own Endcord Classic installer releases, so either can update the other
+    # Signed with the installer key, like main's own Medslol Classic installer releases, so either can update the other
     env:
       SIGNING_STORE_BASE64: ${{ secrets.INSTALLER_KEYSTORE }}
       SIGNING_STORE_PASSWORD: ${{ secrets.INSTALLER_KEYSTORE_PASSWORD }}

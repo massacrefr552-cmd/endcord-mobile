@@ -18,7 +18,7 @@ import kotlin.math.cos
 import kotlin.math.max
 
 /**
- * SmoothType's caret in Discord's message box, like Endcord PC's: it glides to where the cursor goes over the
+ * SmoothType's caret in Discord's message box, like Medslol PC's: it glides to where the cursor goes over the
  * transition delay with the chosen easing, blinks once it has been still for a second, and has its own color.
  *
  * The message box is a native view (DCDChatInput) that offers JS no caret color or position, so the caret is drawn
@@ -58,7 +58,7 @@ private object Caret {
     val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     val rect = RectF()
 
-    /** CSS's timing functions, which Endcord PC's caret transition uses */
+    /** CSS's timing functions, which Medslol PC's caret transition uses */
     fun easing(name: String): Interpolator = when (name) {
         "linear" -> LinearInterpolator()
         "ease-in" -> PathInterpolator(0.42f, 0f, 1f, 1f)
@@ -120,7 +120,7 @@ private fun draw(view: TextView, canvas: Canvas) {
     }
 
     val layout = view.layout
-    // Like Endcord PC, only while the box has focus, and at the end of the selection
+    // Like Medslol PC, only while the box has focus, and at the end of the selection
     if (layout == null || !view.isFocused || !view.hasWindowFocus() || state.wanted == false || view.selectionEnd < 0) {
         state.shown = false
         state.toX = Float.NaN

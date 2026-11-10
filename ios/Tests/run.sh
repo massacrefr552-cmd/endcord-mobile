@@ -161,7 +161,7 @@ launch() {
     grep "^RESULT" "$out" | sed 's/^RESULT //'
     grep "^RESULT" "$out" | sed 's/^RESULT //' >> "$RESULTS/results.txt"
     grep -q "^DONE" "$out" || echo "FAIL $name finished: no DONE (it crashed or hung); see $name.err" | tee -a "$RESULTS/results.txt"
-    grep -E "\[Endcord" "$err" | tail -n 40
+    grep -E "\[Medslol" "$err" | tail -n 40
     echo "::endgroup::"
 }
 

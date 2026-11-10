@@ -5,38 +5,37 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
 /**
- * Endcord's palette, the same "ink" colors Endcord PC and the legacy Endcord Installer are drawn with:
- * a deep night blue base, cobalt for actions and an icy accent taken from the logo.
+ * Medslol's palette: a rich plum base, violet actions, and a bright pink accent that reads as modern and premium.
  */
 object Ink {
-    val Night = Color(0xFF10182A)
-    val Panel = Color(0xFF162137)
-    val PanelHi = Color(0xFF1D2B46)
-    val Line = Color(0xFF253452)
-    val Ice = Color(0xFF9CCBFF)
-    val Cobalt = Color(0xFF3D74E0)
-    val CobaltHi = Color(0xFF5288F0)
-    val Paper = Color(0xFFF3F6FB)
-    val Mist = Color(0xFF8D9BB5)
-    val Dim = Color(0xFF5A6985)
-    val Bamboo = Color(0xFF74D49A)
-    val Ember = Color(0xFFF0776B)
-    val Honey = Color(0xFFF2C14E)
+    val Night = Color(0xFF070910)
+    val Panel = Color(0xFF121827)
+    val PanelHi = Color(0xFF1B2133)
+    val Line = Color(0xFF2E3B57)
+    val Ice = Color(0xFFD9C8FF)
+    val Cobalt = Color(0xFF8B5CF6)
+    val CobaltHi = Color(0xFFB58CFF)
+    val Paper = Color(0xFFF8F5FF)
+    val Mist = Color(0xFFB9B2CC)
+    val Dim = Color(0xFF6F7A94)
+    val Bamboo = Color(0xFF52D6C8)
+    val Ember = Color(0xFFEC4899)
+    val Honey = Color(0xFFFBBF24)
 
     /** Daylight counterparts, for people who prefer the light theme. */
-    val DayBase = Color(0xFFF3F6FB)
-    val DayPanel = Color(0xFFE6ECF6)
-    val DayPanelHi = Color(0xFFD9E2F1)
-    val DayLine = Color(0xFFC3CFE3)
-    val DayInk = Color(0xFF10182A)
-    val DaySubtle = Color(0xFF4A5874)
-    val DayCobalt = Color(0xFF2F62CC)
+    val DayBase = Color(0xFFF8F5FF)
+    val DayPanel = Color(0xFFEDE7FF)
+    val DayPanelHi = Color(0xFFE0D6FF)
+    val DayLine = Color(0xFFCEC0F8)
+    val DayInk = Color(0xFF120F1E)
+    val DaySubtle = Color(0xFF5A4E77)
+    val DayCobalt = Color(0xFF7C3AED)
 }
 
 val EndcordDarkColors = darkColorScheme(
     primary = Ink.Cobalt,
     onPrimary = Ink.Paper,
-    primaryContainer = Color(0xFF22355E),
+    primaryContainer = Color(0xFF2A1F43),
     onPrimaryContainer = Ink.Ice,
     inversePrimary = Ink.DayCobalt,
     secondary = Ink.Ice,
@@ -45,7 +44,7 @@ val EndcordDarkColors = darkColorScheme(
     onSecondaryContainer = Ink.Ice,
     tertiary = Ink.Bamboo,
     onTertiary = Ink.Night,
-    tertiaryContainer = Color(0xFF1C3B2D),
+    tertiaryContainer = Color(0xFF123C39),
     onTertiaryContainer = Ink.Bamboo,
     background = Ink.Night,
     onBackground = Ink.Paper,
@@ -75,17 +74,17 @@ val EndcordDarkColors = darkColorScheme(
 val EndcordLightColors = lightColorScheme(
     primary = Ink.DayCobalt,
     onPrimary = Ink.Paper,
-    primaryContainer = Color(0xFFD7E4FF),
-    onPrimaryContainer = Color(0xFF0E2A63),
+    primaryContainer = Color(0xFFE8DEFF),
+    onPrimaryContainer = Color(0xFF2C165C),
     inversePrimary = Ink.Ice,
-    secondary = Color(0xFF3F5F8F),
+    secondary = Color(0xFF6D4FD6),
     onSecondary = Ink.Paper,
     secondaryContainer = Ink.DayPanelHi,
     onSecondaryContainer = Ink.DayInk,
-    tertiary = Color(0xFF2E8A57),
+    tertiary = Color(0xFF1B9D96),
     onTertiary = Ink.Paper,
-    tertiaryContainer = Color(0xFFCDEFD9),
-    onTertiaryContainer = Color(0xFF0D3A22),
+    tertiaryContainer = Color(0xFFD7F8F6),
+    onTertiaryContainer = Color(0xFF123D39),
     background = Ink.DayBase,
     onBackground = Ink.DayInk,
     surface = Ink.DayBase,

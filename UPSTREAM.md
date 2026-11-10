@@ -1,9 +1,9 @@
 # Upstream.
 
-Endcord for Android (new) is built from the Revenge project, and Endcord for iOS loads the same bundle with a tweak
+Medslol for Android (new) is built from the Revenge project, and Medslol for iOS loads the same bundle with a tweak
 built from RainTweak. Each part lives in its own directory and was imported from the upstream repository at the commit
 listed below. To bring in upstream fixes, fetch the upstream repository and merge or cherry-pick into the matching
-directory (the directories keep upstream's layout, so `git diff` against these commits shows exactly what Endcord
+directory (the directories keep upstream's layout, so `git diff` against these commits shows exactly what Medslol
 changed).
 
 | Directory | Upstream | Imported commit | License |

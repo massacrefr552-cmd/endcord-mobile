@@ -1,6 +1,6 @@
 name: Build Installer
 
-# Endcord Classic's installer, built from main. GitHub only offers a manual run of workflows on the default branch, so
+# Medslol Classic's installer, built from main. GitHub only offers a manual run of workflows on the default branch, so
 # this file is here for the button: pick main under "Use workflow from".
 on:
   workflow_dispatch:
@@ -20,5 +20,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "::error::Endcord Classic's installer is built from main: pick it under Use workflow from"
+          echo "::error::Medslol Classic's installer is built from main: pick it under Use workflow from"
           exit 1

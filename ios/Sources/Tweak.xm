@@ -151,7 +151,7 @@ static BOOL savedBundleIsSigned(NSData *bundle)
 }
 
 /**
- * The saved bundle, if this Discord can run it and it came from where Endcord loads from now. After Discord moves to a
+ * The saved bundle, if this Discord can run it and it came from where Medslol loads from now. After Discord moves to a
  * newer Hermes, the bytecode saved for the old one is as good as missing; so is a bundle from a custom URL that has
  * been turned off since, or the other way around. A published one has to match its signed release too.
  */
@@ -164,7 +164,7 @@ static NSData *usableSavedBundle(void)
     NSString *source = savedBundleSource()[0];
     if (source && ![[bundleURLs() valueForKey:@"absoluteString"] containsObject:source])
     {
-        BunnyLog(@"The saved bundle is from %@, which Endcord doesn't load from now", source);
+        BunnyLog(@"The saved bundle is from %@, which Medslol doesn't load from now", source);
         return nil;
     }
     if (!canRunBundle(bundle, source ?: @"the saved bundle")) return nil;
@@ -404,7 +404,7 @@ static void forwardConsoleIfAsked(jsi::Runtime &runtime)
         [originalHook](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             if (count > 0 && args[0].isString())
             {
-                NSLog(@"[Endcord JS] %@", [JSI toNSString:args[0] runtime:rt]);
+                NSLog(@"[Medslol JS] %@", [JSI toNSString:args[0] runtime:rt]);
             }
             if (originalHook->isObject() && originalHook->asObject(rt).isFunction(rt))
             {
@@ -503,7 +503,7 @@ static void executePreloads(jsi::Runtime &runtime, NSURL *pyoncordDir)
             if ([[fileURL pathExtension] isEqualToString:@"js"])
             {
                 NSData *data = [NSData dataWithContentsOfURL:fileURL];
-                if (data) [JSI evaluate:data tag:[@"endcord:preload:" stringByAppendingString:fileURL.lastPathComponent] runtime:runtime];
+                if (data) [JSI evaluate:data tag:[@"medslol:preload:" stringByAppendingString:fileURL.lastPathComponent] runtime:runtime];
             }
         }
     }
@@ -516,7 +516,7 @@ static void loadEndcord(jsi::Runtime &runtime)
     injectPreBundle(runtime);
 
     // Starts with the saved bundle and updates it for the next start. Without one (the first start, or Discord moved
-    // to a newer Hermes) this start waits for the download, so Endcord is there from the first time Discord opens.
+    // to a newer Hermes) this start waits for the download, so Medslol is there from the first time Discord opens.
     NSData *bundle = usableSavedBundle();
     if (bundle)
     {
@@ -530,17 +530,17 @@ static void loadEndcord(jsi::Runtime &runtime)
 
     if (!bundle)
     {
-        showErrorAlert(@"Endcord couldn't load",
-                       releaseRefused ? @"The download didn't pass Endcord's security check, so it wasn't run."
-                                      : @"Endcord couldn't be downloaded. Check your connection and open Discord again.",
+        showErrorAlert(@"Medslol couldn't load",
+                       releaseRefused ? @"The download didn't pass Medslol's security check, so it wasn't run."
+                                      : @"Medslol couldn't be downloaded. Check your connection and open Discord again.",
                        nil);
         return;
     }
 
-    NSString *error = [JSI evaluate:bundle tag:@"endcord:bundle" runtime:runtime];
+    NSString *error = [JSI evaluate:bundle tag:@"medslol:bundle" runtime:runtime];
     if (error)
     {
-        showErrorAlert(@"Endcord couldn't start",
+        showErrorAlert(@"Medslol couldn't start",
                        [NSString stringWithFormat:@"%@\n\nShake your device for the recovery menu.",
                                                   [error componentsSeparatedByString:@"\n"].firstObject],
                        nil);
@@ -555,7 +555,7 @@ static void loadEndcord(jsi::Runtime &runtime)
 {
     %orig;
 
-    // Whatever goes wrong in Endcord, Discord itself starts
+    // Whatever goes wrong in Medslol, Discord itself starts
     @try
     {
         try
@@ -564,12 +564,12 @@ static void loadEndcord(jsi::Runtime &runtime)
         }
         catch (const std::exception &e)
         {
-            BunnyLog(@"Loading Endcord threw %s", e.what());
+            BunnyLog(@"Loading Medslol threw %s", e.what());
         }
     }
     @catch (NSException *exception)
     {
-        BunnyLog(@"Loading Endcord threw %@: %@", exception.name, exception.reason);
+        BunnyLog(@"Loading Medslol threw %@: %@", exception.name, exception.reason);
     }
 }
 
@@ -612,8 +612,8 @@ static void loadEndcord(jsi::Runtime &runtime)
         if (!isRNNewArchEnabled() || !host || !class_getInstanceMethod(host, @selector(instance:didInitializeRuntime:)))
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                showErrorAlert(@"Discord is too old for Endcord",
-                              @"Endcord needs Discord 332 or newer.",
+                showErrorAlert(@"Discord is too old for Medslol",
+                              @"Medslol needs Discord 332 or newer.",
                               nil);
             });
             return;

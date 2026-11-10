@@ -36,7 +36,7 @@ static const void *kSystemCursorKey = &kSystemCursorKey;
 - (void)setNeedsSelectionUpdate;
 @end
 
-/** CSS's timing functions, which Endcord PC's caret transition uses */
+/** CSS's timing functions, which Medslol PC's caret transition uses */
 static CAMediaTimingFunction *timingNamed(NSString *name)
 {
     if ([name isEqualToString:@"linear"]) return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];

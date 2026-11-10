@@ -1,22 +1,22 @@
 # Plugins
 
-Endcord for Android comes with **303 built-in plugins**: 261 from Endcord PC and 42 made for phones (mostly lookup
-and fun commands). They all start off; turn them on in **Settings → Endcord → Plugins**. Endcord PC's popular plugins
-come first, in Endcord PC's order and with a **POPULAR** badge, and the page shows how many plugins there are and how
-many are on, with filters by status and tag, like Endcord PC's plugin manager.
+Medslol for Android comes with **303 built-in plugins**: 261 from Medslol PC and 42 made for phones (mostly lookup
+and fun commands). They all start off; turn them on in **Settings → Medslol → Plugins**. Medslol PC's popular plugins
+come first, in Medslol PC's order and with a **POPULAR** badge, and the page shows how many plugins there are and how
+many are on, with filters by status and tag, like Medslol PC's plugin manager.
 
 > **Aliucord plugins don't work in this client.** They are Java and Kotlin code written for the older Discord that
 > Aliucord is built on (126.21), while the current Discord is React Native. The Plugins page says so and points people
-> who want Aliucord plugins to **Endcord Classic** (the `main` branch), which runs both Endcord's and Aliucord's
+> who want Aliucord plugins to **Medslol Classic** (the `main` branch), which runs both Medslol's and Aliucord's
 > plugins. Vendetta and Revenge plugins can be installed here too.
 
-## Popular plugins (all of Endcord PC's popular list)
+## Popular plugins (all of Medslol PC's popular list)
 
-| # | Plugin | On your phone | Compared with Endcord PC |
+| # | Plugin | On your phone | Compared with Medslol PC |
 | --- | --- | --- | --- |
 | 1 | CustomProfile | Your own avatar, banner, display name, bio and pronouns, only visible to you | No badges or fake Nitro, which would only be good for fake screenshots; for now the display name changes in messages only |
 | 2 | MessageLogger | Deleted messages stay in the chat in red with a "deleted" tag, and earlier versions of edited ones show above them; ghost ping alerts; ignored users, channels and servers | The log is cleared when the app closes (the default on PC too) |
-| 3 | HideEndcord | Hides Endcord's section of Discord's settings; `/hideendcord` brings it back | A command and a settings button instead of PC's F8 shortcut |
+| 3 | HideMedslol | Hides Medslol's section of Discord's settings; `/hideendcord` brings it back | A command and a settings button instead of PC's F8 shortcut |
 | 4 | FakeNitro | Emojis and stickers you can't use are sent as links; asks first if you don't have the permission | No stream quality part on mobile |
 | 5 | SmoothType | Caret and selection colors for text boxes | Android's native text box can't animate its caret, so only the colors |
 | 6 | ViewIcons | Tap avatars, banners and server icons to see them full size; long-press to copy a server avatar or the link | No context menu entries |
@@ -82,7 +82,7 @@ Plugins that change a message right before it's sent (`onSend`). They run in a f
 | Signature | Adds your signature to the end of every message you send |
 | SilentMessageToggle | Adds a button to the chat bar to toggle sending a silent message. |
 | TalkInReverse | Reverses the message content before sending it. |
-| TextReplace | Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in Endcord's Server |
+| TextReplace | Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in Medslol's Server |
 | Unindent | Trims leading indentation from codeblocks |
 | WriteUpperCase | Changes the first Letter of each Sentence in Message Inputs to Uppercase |
 | ZeroWidthSanitizer | Removes invisible zero-width characters from messages to prevent fingerprinting and tracking |
@@ -244,10 +244,10 @@ Server tags, focus mode, profile presets, startup times, logs.
 | NoTrack | Stops Discord from collecting analytics, metrics and crash reports about how you use the app |
 | FocusMode | One switch for Do Not Disturb, for a while or until you turn it off, and back to your previous status when it ends |
 | ProfileSets | Allows you to save and load different profile presets. |
-| StartupTimings | Shows how long Endcord and each of its plugins took to start, in the plugin's settings |
+| StartupTimings | Shows how long Medslol and each of its plugins took to start, in the plugin's settings |
 
 ### Profiles (5)
-Avatars, banners, badges and theme colors from the services Endcord PC uses.
+Avatars, banners, badges and theme colors from the services Medslol PC uses.
 
 | Plugin | What it does |
 | --- | --- |
@@ -399,7 +399,7 @@ Pinning or hiding DMs and servers, recent channels, counters, themes, StreamProo
 | --- | --- |
 | BetterInvites | See where an invite leads, who made it and when it expires, before joining, with /inviteinfo |
 | ConsoleJanitor | Turns off Discord's console logging, which saves work on slower phones |
-| EndcordToolbox | Adds a button beside the message box with Endcord quick actions: reload, turn off plugins, debug info and safe mode |
+| MedslolToolbox | Adds a button beside the message box with Medslol quick actions: reload, turn off plugins, debug info and safe mode |
 | FakeConnections | Add fake connections to your own profile, visible only to you. |
 | HideServers | Hide servers from your server list with /hideserver, and bring them back from the plugin's settings |
 | IconViewer | Browse and search all of Discord's icons in the plugin's settings, and copy their names |
@@ -461,7 +461,7 @@ Dictionary, weather, currencies, country and holiday info, earthquakes, code pac
 | Xkcd | Send an xkcd comic, the latest, a random one or a number, with /xkcd |
 
 ### Fun and wellbeing (5)
-Plugins drawn on Endcord's screen overlay, and Wellbeing.
+Plugins drawn on Medslol's screen overlay, and Wellbeing.
 
 | Plugin | What it does |
 | --- | --- |
@@ -473,7 +473,7 @@ Plugins drawn on Endcord's screen overlay, and Wellbeing.
 
 ## Writing a plugin
 
-Like on Endcord PC, every plugin has its own folder: `bundle/src/plugins/<pluginName>/index.ts(x)`. Code that several
+Like on Medslol PC, every plugin has its own folder: `bundle/src/plugins/<pluginName>/index.ts(x)`. Code that several
 plugins use lives in `bundle/src/plugins/shared/`. The build generates `bundle/src/plugins/manifest.ts` from the
 folders, and stops if a folder defines more than one plugin.
 
@@ -484,8 +484,8 @@ the shared hooks in `bundle/src/plugins/hooks.tsx`; each is patched into Discord
 // bundle/src/plugins/example/index.ts
 export default definePlugin({
     id: "endcord.example",
-    name: "Example",                       // the same as its name on Endcord PC
-    description: tx("What it does"),       // Endcord PC's English description, so its translations come for free
+    name: "Example",                       // the same as its name on Medslol PC
+    description: tx("What it does"),       // Medslol PC's English description, so its translations come for free
     settings: { enabled: { type: "boolean", label: tx("Label"), default: true } },
     start({ store, cleanup }) {
         cleanup(
@@ -506,8 +506,8 @@ export default definePlugin({
   dialogs are in `ui/dialogs.tsx`, log lists in `ui/LogList.tsx` and persistent timers in `scheduler.ts`.
 - Discord's modules can also be found by their source path: `moduleAt("modules/...tsx")`. Paths last longer than
   name lookups.
-- If a module it needs is missing, the plugin throws; Endcord turns it off and tells the user. Discord never crashes.
-- All user-facing text goes through `t()` or `tx()`. `bun run i18n` takes the translations from Endcord PC, and
+- If a module it needs is missing, the plugin throws; Medslol turns it off and tells the user. Discord never crashes.
+- All user-facing text goes through `t()` or `tx()`. `bun run i18n` takes the translations from Medslol PC, and
   missing ones go in `overrides.json`. CI runs it with `--strict`: an untranslated string stops the build.
 - The emulator test (`.github/workflows/emulator.yml`) turns every plugin on and off in the real Discord and tries
   the hooks with real messages.

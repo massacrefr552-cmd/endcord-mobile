@@ -1,8 +1,10 @@
 package app.revenge.manager.ui.screen.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,6 +37,7 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -44,6 +47,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
@@ -102,17 +107,17 @@ class HomeScreen : Screen {
                 }
             }
 
-        // Endcord is built from the Discord on the phone when there is one, unless the user picks a download
+        // Medslol is built from the Discord on the phone when there is one, unless the user picks a download
         var source by remember { mutableStateOf(prefs.discordSource) }
         val installedDiscord = viewModel.installedDiscord
         val useInstalled = installedDiscord != null && source == DiscordSource.INSTALLED
         val latestVersion = if (useInstalled) installedDiscord else downloadVersion
 
-        // Endcord on the current Discord is installed here; Endcord Classic, on Aliucord's older Discord, by its own
+        // Medslol on the current Discord is installed here; Medslol Classic, on Aliucord's older Discord, by its own
         // installer, which this one fetches and opens
         var edition by remember { mutableStateOf(prefs.edition) }
 
-        // Back from installing Endcord Classic Installer, the button opens it
+        // Back from installing Medslol Classic Installer, the button opens it
         val lifecycleOwner = LocalLifecycleOwner.current
         DisposableEffect(lifecycleOwner) {
             val observer = LifecycleEventObserver { _, event ->
@@ -148,140 +153,157 @@ class HomeScreen : Screen {
 
         Scaffold(
             topBar = { TitleBar() },
+            containerColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground,
         ) { pv ->
-            BoxWithConstraints(modifier = Modifier.padding(pv)) {
-                // A short screen (a phone on its side, a tablet) can't fit the buttons and the change list: the page
-                // scrolls and the list gets a fixed height. A tall one gives the list the room that's left. Larger text
-                // needs a taller screen, or the buttons at the bottom would be cut off with no way to scroll to them.
-                val compact = maxHeight < COMPACT_HEIGHT * LocalDensity.current.fontScale
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier
-                        .then(if (compact) Modifier.verticalScroll(rememberScrollState()) else Modifier)
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                ) {
-                    EditionPicker(
-                        edition = edition,
-                        onChange = {
-                            edition = it
-                            prefs.edition = it
-                        }
-                    )
-
-                    if (edition == Edition.CLASSIC) {
-                        ClassicPanel(viewModel)
-                    } else {
-                        AppIcon(
-                            customIcon = prefs.patchIcon,
-                            releaseChannel = prefs.channel,
-                            modifier = Modifier.size(60.dp)
-                        )
-
-                        Text(
-                            text = prefs.appName,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            AnimatedVisibility(visible = currentVersion != null) {
-                                Text(
-                                    text = stringResource(
-                                        R.string.version_current,
-                                        currentVersion.toString()
-                                    ),
-                                    style = MaterialTheme.typography.labelLarge,
-                                    color = LocalContentColor.current.copy(alpha = 0.5f),
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-
-                            val latestLabel = when {
-                                useInstalled -> R.string.version_on_phone
-                                prefs.discordVersion.isNotBlank() -> R.string.version_target
-                                else -> R.string.version_latest
-                            }
-
-                            AnimatedVisibility(visible = latestVersion != null) {
-                                Text(
-                                    text = stringResource(latestLabel, latestVersion.toString()),
-                                    style = MaterialTheme.typography.labelLarge,
-                                    color = LocalContentColor.current.copy(alpha = 0.5f),
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                        }
-
-                        if (installedDiscord != null) {
-                            SourcePicker(
-                                source = source,
-                                installed = installedDiscord,
-                                download = downloadVersion,
-                                onChange = {
-                                    source = it
-                                    prefs.discordSource = it
-                                }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                Color(0xFF090B10),
+                                Color(0xFF130F1E),
+                                Color(0xFF0A0D16),
                             )
-                        }
-
-                        Button(
-                            onClick = {
-                                navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
-                            },
-                            enabled = latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            val label = when {
-                                latestVersion == null -> R.string.msg_loading
-                                currentVersion == null -> R.string.action_install
-                                currentVersion == latestVersion -> R.string.action_reinstall
-                                latestVersion > currentVersion -> R.string.action_update
-                                else -> if (prefs.allowDowngrade) R.string.msg_downgrade else R.string.msg_downgrade_disallowed
+                        )
+                    )
+                    .padding(pv)
+            ) {
+                BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                    // A short screen (a phone on its side, a tablet) can't fit the buttons and the change list: the page
+                    // scrolls and the list gets a fixed height. A tall one gives the list the room that's left. Larger text
+                    // needs a taller screen, or the buttons at the bottom would be cut off with no way to scroll to them.
+                    val compact = maxHeight < COMPACT_HEIGHT * LocalDensity.current.fontScale
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier
+                            .then(if (compact) Modifier.verticalScroll(rememberScrollState()) else Modifier)
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                    ) {
+                        EditionPicker(
+                            edition = edition,
+                            onChange = {
+                                edition = it
+                                prefs.edition = it
                             }
+                        )
+
+                        if (edition == Edition.CLASSIC) {
+                            ClassicPanel(viewModel)
+                        } else {
+                            AppIcon(
+                                customIcon = prefs.patchIcon,
+                                releaseChannel = prefs.channel,
+                                modifier = Modifier.size(60.dp)
+                            )
 
                             Text(
-                                text = stringResource(label),
-                                textAlign = TextAlign.Center,
-                                maxLines = 1,
-                                modifier = Modifier
-                                    .basicMarquee()
-                                    .fillMaxWidth()
+                                text = prefs.appName,
+                                style = MaterialTheme.typography.titleLarge
                             )
-                        }
 
-                        AnimatedVisibility(visible = viewModel.installManager.current != null) {
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(2.dp),
-                                modifier = Modifier.clip(RoundedCornerShape(16.dp))
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth()
                             ) {
-                                SegmentedButton(
-                                    icon = Icons.Filled.OpenInNew,
-                                    text = stringResource(R.string.action_launch),
-                                    onClick = { viewModel.launchMod() }
-                                )
-                                SegmentedButton(
-                                    icon = Icons.Filled.Info,
-                                    text = stringResource(R.string.action_info),
-                                    onClick = { viewModel.launchModInfo() }
-                                )
-                                SegmentedButton(
-                                    icon = Icons.Filled.Delete,
-                                    text = stringResource(R.string.action_uninstall),
-                                    onClick = { viewModel.uninstallMod() }
+                                AnimatedVisibility(visible = currentVersion != null) {
+                                    Text(
+                                        text = stringResource(
+                                            R.string.version_current,
+                                            currentVersion.toString()
+                                        ),
+                                        style = MaterialTheme.typography.labelLarge,
+                                        color = LocalContentColor.current.copy(alpha = 0.5f),
+                                        textAlign = TextAlign.Center
+                                    )
+                                }
+
+                                val latestLabel = when {
+                                    useInstalled -> R.string.version_on_phone
+                                    prefs.discordVersion.isNotBlank() -> R.string.version_target
+                                    else -> R.string.version_latest
+                                }
+
+                                AnimatedVisibility(visible = latestVersion != null) {
+                                    Text(
+                                        text = stringResource(latestLabel, latestVersion.toString()),
+                                        style = MaterialTheme.typography.labelLarge,
+                                        color = LocalContentColor.current.copy(alpha = 0.5f),
+                                        textAlign = TextAlign.Center
+                                    )
+                                }
+                            }
+
+                            if (installedDiscord != null) {
+                                SourcePicker(
+                                    source = source,
+                                    installed = installedDiscord,
+                                    download = downloadVersion,
+                                    onChange = {
+                                        source = it
+                                        prefs.discordSource = it
+                                    }
                                 )
                             }
-                        }
 
-                        ElevatedCard(
-                            modifier = if (compact) Modifier.fillMaxWidth().height(COMPACT_LIST_HEIGHT) else Modifier.fillMaxSize()
-                        ) {
-                            CommitList(
-                                commits = viewModel.commits.collectAsLazyPagingItems()
-                            )
+                            Button(
+                                onClick = {
+                                    navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
+                                },
+                                enabled = latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                val label = when {
+                                    latestVersion == null -> R.string.msg_loading
+                                    currentVersion == null -> R.string.action_install
+                                    currentVersion == latestVersion -> R.string.action_reinstall
+                                    latestVersion > currentVersion -> R.string.action_update
+                                    else -> if (prefs.allowDowngrade) R.string.msg_downgrade else R.string.msg_downgrade_disallowed
+                                }
+
+                                Text(
+                                    text = stringResource(label),
+                                    textAlign = TextAlign.Center,
+                                    maxLines = 1,
+                                    modifier = Modifier
+                                        .basicMarquee()
+                                        .fillMaxWidth()
+                                )
+                            }
+
+                            AnimatedVisibility(visible = viewModel.installManager.current != null) {
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(2.dp),
+                                    modifier = Modifier.clip(RoundedCornerShape(16.dp))
+                                ) {
+                                    SegmentedButton(
+                                        icon = Icons.Filled.OpenInNew,
+                                        text = stringResource(R.string.action_launch),
+                                        onClick = { viewModel.launchMod() }
+                                    )
+                                    SegmentedButton(
+                                        icon = Icons.Filled.Info,
+                                        text = stringResource(R.string.action_info),
+                                        onClick = { viewModel.launchModInfo() }
+                                    )
+                                    SegmentedButton(
+                                        icon = Icons.Filled.Delete,
+                                        text = stringResource(R.string.action_uninstall),
+                                        onClick = { viewModel.uninstallMod() }
+                                    )
+                                }
+                            }
+
+                            ElevatedCard(
+                                modifier = if (compact) Modifier.fillMaxWidth().height(COMPACT_LIST_HEIGHT) else Modifier.fillMaxSize()
+                            ) {
+                                CommitList(
+                                    commits = viewModel.commits.collectAsLazyPagingItems()
+                                )
+                            }
                         }
                     }
                 }
@@ -314,7 +336,7 @@ class HomeScreen : Screen {
                         selected = edition == value,
                         onClick = { onChange(value) },
                         shape = SegmentedButtonDefaults.itemShape(index, editions.size),
-                        // The fill shows the choice; a checkmark would cut "Endcord Classic" short on a narrow phone
+                        // The fill shows the choice; a checkmark would cut "Medslol Classic" short on a narrow phone
                         icon = {},
                         label = { Text(stringResource(label), maxLines = 1, overflow = TextOverflow.Ellipsis) }
                     )
@@ -430,7 +452,13 @@ class HomeScreen : Screen {
     private fun TitleBar() {
         TopAppBar(
             title = { Text(stringResource(R.string.app_name)) },
-            actions = { Actions() }
+            actions = { Actions() },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color.Transparent,
+                scrolledContainerColor = Color.Transparent,
+                titleContentColor = MaterialTheme.colorScheme.onBackground,
+                actionIconContentColor = MaterialTheme.colorScheme.onBackground,
+            )
         )
     }
 
@@ -455,5 +483,4 @@ class HomeScreen : Screen {
             )
         }
     }
-
 }

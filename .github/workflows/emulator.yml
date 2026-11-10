@@ -1,6 +1,6 @@
 name: Emulator test
 
-# Installs Endcord through the installer on an Android emulator, like a user would, and runs the bundle's self-test
+# Installs Medslol through the installer on an Android emulator, like a user would, and runs the bundle's self-test
 # inside the latest Discord. Results (screenshots, logs, the self-test report) are published to test-results/<branch>.
 on:
   push:

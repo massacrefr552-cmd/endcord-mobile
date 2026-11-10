@@ -1,6 +1,6 @@
 name: iOS real Discord
 
-# The real iOS Discord on the simulator, with Endcord's self-test (ios/Tests/real-discord.sh). On ios-real/ branches
+# The real iOS Discord on the simulator, with Medslol's self-test (ios/Tests/real-discord.sh). On ios-real/ branches
 # only; nothing is published, and the IPA stays in the run. Results land on test-results/<branch>.
 on:
   push:

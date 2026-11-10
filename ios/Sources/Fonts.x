@@ -133,7 +133,7 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
 {
     if (![mainFonts isKindOfClass:NSDictionary.class] || !isSafeFileName(fontDefName))
     {
-        BunnyLog(@"fonts.json has no font Endcord can use");
+        BunnyLog(@"fonts.json has no font Medslol can use");
         return;
     }
 

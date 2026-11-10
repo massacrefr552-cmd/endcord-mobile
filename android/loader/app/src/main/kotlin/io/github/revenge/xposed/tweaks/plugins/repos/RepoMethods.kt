@@ -168,8 +168,8 @@ internal fun internalRepoJSPayload(): Map<String, Any?> = mapOf(
     "url" to INTERNAL_REPO_URL,
     "enabled" to true,
     "internal" to true,
-    "name" to "Endcord",
-    "description" to "Plugins built into Endcord.",
+    "name" to "Medslol",
+    "description" to "Plugins built into Medslol.",
     "icon" to null,
 )
 

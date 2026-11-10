@@ -61,14 +61,14 @@ launch_endcord() {
     done
     adb logcat -d > "results/$name-logcat.txt"
     grep -o 'ENDCORD_TEST .*' "results/$name-logcat.txt" | sed 's/^ENDCORD_TEST //' > "results/$name-selftest.jsonl"
-    grep -iE 'ReactNativeJS|Endcord|LSPatch|AndroidRuntime|FATAL' "results/$name-logcat.txt" > "results/$name-logcat-endcord.txt"
+    grep -iE 'ReactNativeJS|Medslol|LSPatch|AndroidRuntime|FATAL' "results/$name-logcat.txt" > "results/$name-logcat-endcord.txt"
     python3 "$SCRIPTS/ui.py" shot "$name-final"
-    if grep -q '"kind":"done"' "results/$name-selftest.jsonl"; then pass "$name: Endcord loaded and ran its self-test"; else fail "$name: no self-test report"; fi
+    if grep -q '"kind":"done"' "results/$name-selftest.jsonl"; then pass "$name: Medslol loaded and ran its self-test"; else fail "$name: no self-test report"; fi
     if grep -q "FATAL EXCEPTION" "results/$name-logcat.txt"; then fail "$name: the app crashed"; fi
     adb shell am force-stop $ENDCORD_PKG
 }
 
-step "Install Endcord Installer"
+step "Install Medslol Installer"
 adb install -r -g installer.apk || fail "installer apk didn't install"
 adb shell appops set $INSTALLER_PKG REQUEST_INSTALL_PACKAGES allow
 adb shell appops set $INSTALLER_PKG MANAGE_EXTERNAL_STORAGE allow
@@ -84,12 +84,12 @@ else
     fail "download: installer didn't finish"
 fi
 adb logcat -d > results/installer-download-logcat.txt
-adb shell pm list packages | grep -q "$ENDCORD_PKG" && pass "download: Endcord installed" || fail "download: Endcord not installed"
+adb shell pm list packages | grep -q "$ENDCORD_PKG" && pass "download: Medslol installed" || fail "download: Medslol not installed"
 adb shell am force-stop $INSTALLER_PKG
 endstep
 
 if adb shell pm list packages | grep -q "$ENDCORD_PKG"; then
-    step "Launch Endcord (downloaded Discord)"
+    step "Launch Medslol (downloaded Discord)"
     launch_endcord download
     endstep
 fi
@@ -106,7 +106,7 @@ if [ -d discord ]; then
         fail "installed: installer didn't finish"
     fi
     adb logcat -d > results/installer-installed-logcat.txt
-    adb shell pm list packages | grep -q "$ENDCORD_PKG" && pass "installed: Endcord installed" || fail "installed: Endcord not installed"
+    adb shell pm list packages | grep -q "$ENDCORD_PKG" && pass "installed: Medslol installed" || fail "installed: Medslol not installed"
     adb shell am force-stop $INSTALLER_PKG
     if adb shell pm list packages | grep -q "$ENDCORD_PKG"; then
         launch_endcord installed
@@ -116,7 +116,7 @@ fi
 endstep
 
 step "Signed releases: what the loader refuses"
-# Starts Endcord with the server serving something it shouldn't, and looks for the loader's refusal in the log
+# Starts Medslol with the server serving something it shouldn't, and looks for the loader's refusal in the log
 expect_refusal() {
     local name=$1 message=$2
     adb shell am force-stop $ENDCORD_PKG
@@ -129,7 +129,7 @@ expect_refusal() {
         if grep -q "$message" "results/refused-$name-logcat.txt"; then found=1; break; fi
     done
     [ -n "$found" ] && pass "refused: $name" || fail "not refused: $name"
-    adb shell pidof $ENDCORD_PKG > /dev/null && pass "$name: Endcord still running" || fail "$name: Endcord stopped"
+    adb shell pidof $ENDCORD_PKG > /dev/null && pass "$name: Medslol still running" || fail "$name: Medslol stopped"
 }
 if adb shell pm list packages | grep -q "$ENDCORD_PKG"; then
     cp serve/endcord-release.json results/release-good.json
@@ -148,7 +148,7 @@ fi
 endstep
 
 # The loader asks for the bundle precompiled for this Discord's bytecode version first, and the plain one without it
-grep -oE '"GET /(pinned/)?endcord[^ ]* HTTP/1\.[01]" [0-9]+' results/http.log | sort | uniq -c > results/bundle-requests.txt
+grep -oE '"GET /(pinned/)?medslol[^ ]* HTTP/1\.[01]" [0-9]+' results/http.log | sort | uniq -c > results/bundle-requests.txt
 if grep -qE '"GET /pinned/endcord\.v[0-9]+\.hbc HTTP/1\.[01]" 200' results/http.log; then
     pass "the bytecode bundle was loaded, from the signed release's own address"
 else

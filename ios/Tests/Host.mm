@@ -218,7 +218,7 @@ static void checkLoaderAndBridge(jsi::Runtime &rt)
         check(@"bridge-async", NO, [NSString stringWithUTF8String:e.what()]);
     }
 
-    check(@"discord-init-ran", rt.global().getProperty(rt, "__HOST_ORIG__").isBool(), @"%orig before Endcord");
+    check(@"discord-init-ran", rt.global().getProperty(rt, "__HOST_ORIG__").isBool(), @"%orig before Medslol");
 }
 
 static void checkSideloading(void)
@@ -707,11 +707,11 @@ static void runScenario(jsi::Runtime &rt)
         }
         else if ([scenario isEqualToString:@"offline-nothing"] || [scenario isEqualToString:@"signed-required-missing"])
         {
-            check(@"alert", [alert.title isEqualToString:@"Endcord couldn't load"], alert.title ?: @"no alert");
+            check(@"alert", [alert.title isEqualToString:@"Medslol couldn't load"], alert.title ?: @"no alert");
         }
         else if ([scenario isEqualToString:@"bundle-throws"])
         {
-            check(@"alert", [alert.title isEqualToString:@"Endcord couldn't start"] &&
+            check(@"alert", [alert.title isEqualToString:@"Medslol couldn't start"] &&
                                 [alert.message containsString:@"boom"],
                   [NSString stringWithFormat:@"%@: %@", alert.title, alert.message]);
         }
@@ -748,7 +748,7 @@ static void runScenario(jsi::Runtime &rt)
     UIViewController *root = [UIViewController new];
     root.view.backgroundColor = UIColor.systemBackgroundColor;
     UILabel *label = [UILabel new];
-    label.text = [NSString stringWithFormat:@"Endcord test host\n%@", scenario];
+    label.text = [NSString stringWithFormat:@"Medslol test host\n%@", scenario];
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.frame = root.view.bounds;

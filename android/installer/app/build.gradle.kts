@@ -21,8 +21,8 @@ android {
         versionCode = versionName!!.removePrefix("v").split("-").first().replace(".", "").toInt()
 
 
-        buildConfigField("String", "MOD_NAME", "\"Endcord\"")
-        buildConfigField("String", "MANAGER_NAME", "\"EndcordInstaller\"")
+        buildConfigField("String", "MOD_NAME", "\"Medslol\"")
+        buildConfigField("String", "MANAGER_NAME", "\"MedslolInstaller\"")
         buildConfigField("String", "REPO", "\"Endcord/endcord-mobile\"")
         buildConfigField("String", "ORG_LINK", "\"https://github.com/Endcord/endcord-mobile/tree/next\"")
         buildConfigField("String", "INVITE_LINK", "\"https://discord.gg/endcord\"")
@@ -34,7 +34,7 @@ android {
             .orElse("https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-next/endcord-xposed.apk")
             .get()
         buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
-        // Endcord Classic (on Aliucord's older Discord) is installed by its own installer, which is published next to
+        // Medslol Classic (on Aliucord's older Discord) is installed by its own installer, which is published next to
         // the loader. -Pendcord.classicInstallerUrl=... points at another copy.
         val classicInstallerUrl = providers.gradleProperty("endcord.classicInstallerUrl")
             .orElse("${loaderUrl.substringBeforeLast('/')}/endcord-classic-installer.apk")
@@ -54,9 +54,9 @@ android {
             .orElse(providers.fileContents(rootProject.layout.projectDirectory.file("../../bundle/release-key.pub")).asText)
             .get().trim()
         buildConfigField("String", "RELEASE_KEY", "\"$releaseKey\"")
-        buildConfigField("int", "MODDED_APP_ICON", "0xFF10182A") // Endcord night blue
-        buildConfigField("int", "MODDED_APP_ICON_ALPHA", "0xFF3D74E0") // cobalt (beta)
-        buildConfigField("int", "MODDED_APP_ICON_OTHER", "0xFF9CCBFF") // ice (alpha)
+        buildConfigField("int", "MODDED_APP_ICON", "0xFF120F1E") // Medslol deep plum
+        buildConfigField("int", "MODDED_APP_ICON_ALPHA", "0xFF8B5CF6") // violet
+        buildConfigField("int", "MODDED_APP_ICON_OTHER", "0xFFEC4899") // pink
 
         buildConfigField("String", "GIT_BRANCH", "\"${getCurrentBranch()}\"")
         buildConfigField("String", "GIT_COMMIT", "\"${getLatestCommit()}\"")

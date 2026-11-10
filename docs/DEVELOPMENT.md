@@ -1,16 +1,16 @@
-# Developing Endcord Mobile
+# Developing Medslol Mobile
 
-Endcord Mobile, for Android and iOS, is a fork of [Revenge](https://github.com/revenge-mod) and lives on the `next` branch of
-`endcord-mobile`, next to the classic-app Endcord on `main`; the two are separate apps and separate code.
+Medslol Mobile, for Android and iOS, is a fork of [Revenge](https://github.com/revenge-mod) and lives on the `next` branch of
+`endcord-mobile`, next to the classic-app Medslol on `main`; the two are separate apps and separate code.
 [UPSTREAM.md](../UPSTREAM.md) lists the exact upstream commits.
 
 ## What is in this repository
 
 | Directory | What it is | Upstream |
 | --- | --- | --- |
-| `bundle/` | The JavaScript that runs inside Discord: Endcord's plugins (`src/plugins`), the plugin system, settings UI, themes, fonts and translations (`src/core/i18n`). Built with Bun into `endcord.min.js`. | revenge-bundle (BSD-3) |
+| `bundle/` | The JavaScript that runs inside Discord: Medslol's plugins (`src/plugins`), the plugin system, settings UI, themes, fonts and translations (`src/core/i18n`). Built with Bun into `endcord.min.js`. | revenge-bundle (BSD-3) |
 | `android/loader/` | The Xposed module that loads the bundle into Discord. Works both embedded by the installer (no root) and as a regular LSPosed module (root). | revenge-xposed (GPL-3) |
-| `android/installer/` | Endcord Installer: takes the installed or the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
+| `android/installer/` | Medslol Installer: takes the installed or the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
 | `ios/` | The tweak that loads the same bundle into Discord on iOS and iPadOS, with its tests. See [ios/README.md](../ios/README.md) | [RainTweak](https://codeberg.org/raincord/RainTweak) |
 
 Every push to `next` is built by the [Build workflow](../.github/workflows/build.yml) and published to the
@@ -35,11 +35,11 @@ cd android/installer && ./gradlew :app:assembleDebug
 ```
 
 Package names: the installer is `com.endcord.installer.next`, the patched Discord is `com.endcord.next` (the
-classic-app Endcord uses `com.endcord`, so both can be installed at once), the loader module is `com.endcord.xposed`.
+classic-app Medslol uses `com.endcord`, so both can be installed at once), the loader module is `com.endcord.xposed`.
 
 ## Plugins
 
-Endcord's plugins live one per folder, like Endcord PC's: `bundle/src/plugins/<pluginName>/index.ts(x)`, with what
+Medslol's plugins live one per folder, like Medslol PC's: `bundle/src/plugins/<pluginName>/index.ts(x)`, with what
 several plugins share in `bundle/src/plugins/shared/`. Each is defined with `definePlugin` from
 `bundle/src/plugins/api.ts`: a settings schema (the settings page is generated from it), `start` with a `cleanup`
 helper for every patch, and an optional extra settings component. Plugins find Discord's modules by their source path
@@ -47,20 +47,20 @@ helper for every patch, and an optional extra settings component. Plugins find D
 missing: a plugin that throws while starting is turned off with a notice, never crashing Discord. Most plugins use the
 shared hooks in `bundle/src/plugins/hooks.tsx` (`onSend`, `onIncomingMessage`, `onMessageRow`, `addMessageAction`,
 `command`), each patched into Discord once. The build generates `bundle/src/plugins/manifest.ts` from the plugin
-folders, so Endcord starts knowing every plugin's name and description but loads a plugin's code only when it is
+folders, so Medslol starts knowing every plugin's name and description but loads a plugin's code only when it is
 turned on. The full list and how to write one are in [PLUGINS.md](PLUGINS.md).
 
 ## Translations
 
 User-visible text is English in the code, passed through `t()` (or marked with `tx()`). `bun run i18n` (or
-`node scripts/i18n-sync.mjs --pc <path to Endcord PC>`) builds `src/core/i18n/locales/*.json` from Endcord PC's
+`node scripts/i18n-sync.mjs --pc <path to Medslol PC>`) builds `src/core/i18n/locales/*.json` from Medslol PC's
 translations, with mobile-specific wording in `src/core/i18n/overrides.json`. CI fails if a string is untranslated.
 
 ## Testing
 
 The [Emulator test workflow](../.github/workflows/emulator.yml) runs on every push to a `ci/**` branch: it installs
-Endcord Installer on an Android emulator, installs Endcord both by downloading Discord and from a pre-installed
-Discord (tapping through the installer like a user), launches Endcord and runs the bundle's self-test (built with
+Medslol Installer on an Android emulator, installs Medslol both by downloading Discord and from a pre-installed
+Discord (tapping through the installer like a user), launches Medslol and runs the bundle's self-test (built with
 `--test`) inside Discord. Screenshots, logs and the self-test report are pushed to the `test-results/<branch>` branch.
 The same push runs the Build workflow too, which builds everything a release does without publishing it.
 
@@ -73,7 +73,7 @@ The same push runs the Build workflow too, which builds everything a release doe
 - Installer releases: run **Release Installer** by hand with a version number, or push a `next-installer-v<version>`
   tag (`git tag next-installer-v1.0.1 && git push origin next-installer-v1.0.1`). It needs `INSTALLER_KEYSTORE`
   (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`; with them, every push
-  to `next` signs its installer the same way, so one can update the other. The Endcord Classic installer is signed
+  to `next` signs its installer the same way, so one can update the other. The Medslol Classic installer is signed
   with the same key, both in `builds-next` and in `main`'s own releases. The README's download links name the
   version, so update them with each release.
 - Without the secrets, every build is signed with a new throwaway key, and Android won't install one over another.
